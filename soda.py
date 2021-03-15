@@ -2,8 +2,12 @@
 import urllib.request
 import json
 import configparser
+import os 
+import sys
 
 config = configparser.ConfigParser()
+if (not os.path.exists("config.ini")):   
+   sys.exit("config.ini not found")
 config.read('config.ini')
 token = config['gitlab'].get("token")
 url = config['gitlab'].get("url")
@@ -15,6 +19,7 @@ with urllib.request.urlopen(gitlab_url) as response:
    raw_json = response.read()
    json = json.loads(raw_json)
    print("Number of Gitlab open issues: ", len(json))
+   
 # fetch number of errors on loki
 
 # fetch number of unassigned email on front
