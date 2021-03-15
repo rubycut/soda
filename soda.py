@@ -15,6 +15,10 @@ if ( type(token)() is None ):
    sys.exit("Gitlab token not found in config.ini, see config-sample.ini for more info.")
 
 url = config['gitlab'].get("url")
+if (type(url)() is None):
+   sys.exit(
+       "Gitlab url not found in config.ini, see config-sample.ini for more info.")
+
 print("Token is: ", token)
 
 gitlab_url = f'{url}/api/v4/issues?state=opened&private_token={token}'
