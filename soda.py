@@ -26,9 +26,11 @@ try:
       raw_json = response.read()
       json = json.loads(raw_json)
       print("Number of Gitlab open issues: ", len(json))
-except:
+except Exception as e:   
+   print(e)
    sys.exit(
        f'Can\'t connect to: {gitlab_url}')
+       
 
 # fetch number of errors on loki
 
